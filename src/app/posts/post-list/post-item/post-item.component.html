@@ -1,0 +1,14 @@
+<div class="post-preview">
+  <a style="cursor: pointer" [routerLink]="[index]">
+    <h2 class="post-title">
+      {{ post.naslov }}
+    </h2>
+    <h3 class="post-subtitle">
+      {{ post.podnaslov}}
+    </h3>
+  </a>
+  <p class="post-meta">Posted by
+    <a routerLink="/posts">Stefan</a>
+    on {{ post.datum | date: 'longDate'}} ~ {{ vremeZaCitanje(post.sadrzaj) }}</p>
+  <hr>
+</div>

@@ -1,0 +1,77 @@
+<!-- Page Header -->
+<header class="masthead" style="background-image: url('assets/img/bg-contact.jpg')">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <div class="page-heading">
+          <h1>Contact Me</h1>
+          <span class="subheading">Have questions? I have answers.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Main Content -->
+<div class="container">
+  <div class="row" *ngIf="!sabmitovano && !nijeSabmitovano">
+    <div class="col-lg-8 col-md-10 mx-auto">
+      <p>Want to get in touch? Fill out the form below to send me a message and I will get back to you as soon as possible!</p>
+      <form name="sentMessage" id="contactForm" novalidate #contactForm="ngForm" (ngSubmit)="onSubmit(contactForm)">
+        <div class="control-group">
+          <div class="form-group floating-label-form-group controls" [ngClass]="status && tekstName ? 'floating-label-form-group-with-focus floating-label-form-group-with-value success' : ''" >
+            <label>Name</label>
+            <input type="text" class="form-control" placeholder="Name" id="name" ngModel name="name" required pattern="^[A-ZŠĐČĆŽ][a-zšđčćž]{2,15}([\s][A-ZŠĐČĆŽ][a-zšđčćž]{2,15})*$" #name="ngModel"
+            (focus)="status = true" [(ngModel)]="tekstName">
+            <p class="help-block text-danger" *ngIf="!name.valid && name.touched">&#9785; Not a valid name. First letter must be uppercase letter and minimum number of characters is 3. Example: Ana</p>
+          </div>
+        </div>
+        <div class="control-group">
+          <div class="form-group floating-label-form-group controls" [ngClass]="status && tekstEmail ? 'floating-label-form-group-with-focus floating-label-form-group-with-value success' : ''" >
+            <label>Email Address</label>
+            <input type="email" class="form-control" placeholder="Email Address" id="email" ngModel name="email" required email #email="ngModel"
+            (focus)="status = true" [(ngModel)]="tekstEmail">
+            <p class="help-block text-danger" *ngIf="!email.valid && email.touched">&#9785; Not a valid email address</p>
+          </div>
+        </div>
+        <div class="control-group">
+          <div class="form-group floating-label-form-group controls" [ngClass]="status && tekstPhone ? 'floating-label-form-group-with-focus floating-label-form-group-with-value success' : ''" >
+            <label>Phone Number</label>
+            <input type="text" class="form-control" placeholder="Phone Number" id="phone" ngModel name="phone" required pattern="^[0][1-9][0-9]{7,8}$" #phone="ngModel"
+            (focus)="status = true" [(ngModel)]="tekstPhone">
+            <p class="help-block text-danger" *ngIf="!phone.valid && phone.touched">&#9785; Not a valid phone number. It must have 9-10 digits, which 0 is the first digit. Example: 064123456</p>
+          </div>
+        </div>
+        <div class="control-group">
+          <div class="form-group floating-label-form-group controls" [ngClass]="status && tekstMessage ? 'floating-label-form-group-with-focus floating-label-form-group-with-value success' : ''" >
+            <label>Message</label>
+            <textarea rows="5" class="form-control" placeholder="Message" id="message" ngModel name="message" required #message="ngModel"
+                      (focus)="status = true" [(ngModel)]="tekstMessage">
+            </textarea>
+            <p class="help-block text-danger" *ngIf="!message.valid && message.touched">&#9785; Not a valid message</p>
+          </div>
+        </div>
+        <br>
+        <div id="success"></div>
+        <button type="submit" class="btn btn-primary" id="sendMessageButton" [disabled]="!contactForm.valid">Send</button>
+      </form>
+    </div>
+  </div>
+  <hr>
+  <div class="row" *ngIf="sabmitovano">
+    <div class="col-xs-12 alert alert-success obavestenje" [@obavestenjeSuccess]="stateError">
+      <h3>Your data is successfully submitted</h3>
+      <p>Name: {{korisnik.name}}</p>
+      <p>Email: {{korisnik.email}}</p>
+      <p>Phone: {{korisnik.phone}}</p>
+      <p>Message: {{korisnik.message}}</p>
+    </div>
+  </div>
+  <div class="row" *ngIf="nijeSabmitovano">
+    <div class="col-xs-12 alert alert-danger obavestenje"[@obavestenjeAlert]="stateSuccess">
+      <h3>Unexpected error! Your data is not submitted!</h3>
+    </div>
+  </div>
+</div>
+<hr>

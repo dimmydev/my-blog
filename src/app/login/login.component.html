@@ -1,0 +1,28 @@
+<div id="loginLayout">
+  <div class="container" id="loginCont">
+    <div class="row justify-content-center">
+      <div class="col-lg-5 col-md-7 col-sm-9 col-11">
+        <h5 class="text-white text-center mt-5">Enter admin credentials</h5>
+        <form id="loginForma"class="justify-content-between" #loginForma="ngForm" (ngSubmit)="onSubmit(loginForma)">
+          <div class="form-group">
+            <input id="inputEmail" type="email" placeholder="Email" class="form-control py-4 mr-2 my-2" ngModel name="email" required email #email="ngModel">
+            <div class="invalid-feedback invalidTekst" *ngIf="!email.valid && email.touched">Not a valid email address</div>
+          </div>
+          <div class="form-group">
+            <input id="inputPassword" type="password" placeholder="Password" class="form-control py-4 mr-2 my-2" ngModel name="password" required minlength="6" #pass="ngModel">
+            <div class="invalid-feedback invalidTekst" *ngIf="!pass.valid && pass.touched">Invalid password</div>
+          </div>
+          <div class="form-group d-flex align-items-center justify-content-between text-center">
+            <button type="submit" class="btn btn-primary" [disabled]="!loginForma.valid">Log in</button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div id="alertLogin" class="alert alert-danger col-lg-5" *ngIf="error">
+        <p>{{ error }}</p>
+      </div>
+    </div>
+  </div>
+</div>

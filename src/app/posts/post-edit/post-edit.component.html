@@ -1,0 +1,42 @@
+<div class="full-background">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <form id="newPostForm" class="mb-5" [formGroup]="forma" (ngSubmit)="onSubmit()">
+          <h2 class="text-white mb-4">Post Content</h2>
+          <div class="form-group">
+            <input id="headingInput" type="text" placeholder="Post heading" class="form-control py-4" formControlName="naslov">
+            <div class="invalid-feedback">Heading required</div>
+          </div>
+          <div class="form-group">
+            <input id="subHeadingInput" type="text" placeholder="Post subheading" class="form-control py-4" formControlName="podnaslov">
+            <div class="invalid-feedback">Subheading required</div>
+          </div>
+          <div class="form-group">
+            <input id="backgroundImageInput" type="text" placeholder="Post background image (enter a URL)" class="form-control py-4" formControlName="slikaPutanja">
+            <div class="form-text text-white-50">Use an image URL (ex. https://source.unsplash.com/WLUHO9A_xik/1600x900)</div>
+            <div class="invalid-feedback">Background image required</div>
+          </div>
+          <div class="form-group">
+            <textarea id="bodyInput" placeholder="Post body text (markdown supported)" class="form-control py-3" rows="10" formControlName="sadrzaj" [(ngModel)]="prikaz"></textarea>
+            <div class="form-text text-white-50">
+              Markdown supported
+            </div>
+            <div class="invalid-feedback">Body content required</div>
+          </div>
+          <div class="form-group d-flex align-items-center justify-content-between">
+            <button type="submit" class="btn btn-primary" [disabled]="!forma.valid" *ngIf="editMode; else createMode">Update Post</button>
+            <ng-template #createMode>
+              <button type="submit" class="btn btn-primary" [disabled]="!forma.valid" *ngIf="!editMode">Create Post</button>
+            </ng-template>
+          </div>
+        </form>
+        <h2 class="text-white mb-4">Post Preview</h2>
+        <div id="newPostPreview" class="p-4 mb-4">
+          <p [innerHTML]="prikaz"></p>
+        </div>
+        <button class="btn btn-danger" (click)="onDeletePost()" *ngIf="editMode">Delete Post</button>
+      </div>
+    </div>
+  </div>
+</div>

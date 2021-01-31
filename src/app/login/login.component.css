@@ -1,0 +1,33 @@
+#loginLayout {
+  background-color: #212529;
+  height: 100vh;
+}
+
+#loginCont {
+  padding-top: 50px;
+}
+
+#inputPassword {
+  -webkit-box-flex: 1;
+  flex: 1 0 auto;
+}
+
+#inputEmail {
+  -webkit-box-flex: 1;
+  flex: 1 0 auto;
+}
+
+#alertLogin {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.invalidTekst {
+  display: block;
+}
+
+input.ng-invalid.ng-touched{
+  border-color: #dc3545;
+  box-shadow: 0 0 0 0.2rem rgba(220,53,69,.25);
+}
+

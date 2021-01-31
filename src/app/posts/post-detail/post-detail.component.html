@@ -1,0 +1,33 @@
+<!-- Page Header -->
+<header class="masthead" id="slika" [ngStyle]="{backgroundImage : 'url(' + post.slikaPutanja + ')'}">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <div class="post-heading">
+          <h1>{{ post.naslov }}</h1>
+          <h2 class="subheading">{{ post.podnaslov }}</h2>
+          <span class="meta">Posted by
+              <a routerLink="/posts/{{id}}" >Stefan</a>
+              on {{ post.datum | date: 'longDate'}} ~ {{ vremeZaCitanje(post.sadrzaj) }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Post Content -->
+<article>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <p [innerHTML]="post.sadrzaj"></p>
+        <hr *ngIf="ulogovan">
+        <div class="clearfix text-center">
+          <button type="button" class="btn btn-primary" (click)="onEditRecipe()" *ngIf="ulogovan">Edit Post</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr>
+</article>
